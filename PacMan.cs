@@ -185,3 +185,38 @@ if (score == numDots)
     // Otherwise, the game is not over
     return false;
 }
+
+static void PrintGameBoard(string[,] gameBoard, int pacmanX, int pacmanY, int ghost1X, int ghost1Y, int ghost2X, int ghost2Y, int score)
+{
+    // Print the game board
+    for (int y = 0; y < gameBoard.GetLength(0); y++)
+    {
+        for (int x = 0; x < gameBoard.GetLength(1); x++)
+        {
+            // Check if this is the position of Pac-Man
+            if (x == pacmanX && y == pacmanY)
+            {
+                // Print Pac-Man
+                Console.Write("P");
+            }
+            else if (x == ghost1X && y == ghost1Y)
+            {
+                // Print ghost 1
+                Console.Write("G");
+            }
+            else if (x == ghost2X && y == ghost2Y)
+            {
+                // Print ghost 2
+                Console.Write("G");
+            }
+            else
+            {
+                // Print the game board element
+                Console.Write(gameBoard[y, x]);
+            }
+        }
+        Console.WriteLine();
+    }
+    // Print the score
+    Console.WriteLine("Score: " + score);
+}
