@@ -119,3 +119,39 @@ namespace TicTacToe
         }
     }
 }
+
+static bool HasPlayerWon(string[,] gameBoard, string player)
+{
+    // Check rows
+    for (int i = 0; i < 3; i++)
+    {
+        if (gameBoard[i, 0] == player && gameBoard[i, 1] == player && gameBoard[i, 2] == player)
+        {
+            return true;
+        }
+    }
+
+    // Check columns
+    for (int i = 0; i < 3; i++)
+    {
+        if (gameBoard[0, i] == player && gameBoard[1, i] == player && gameBoard[2, i] == player)
+        {
+            return true;
+        }
+    }
+
+    // Check diagonal (top-left to bottom-right)
+    if (gameBoard[0, 0] == player && gameBoard[1, 1] == player && gameBoard[2, 2] == player)
+    {
+        return true;
+    }
+
+    // Check diagonal (top-right to bottom-left)
+    if (gameBoard[0, 2] == player && gameBoard[1, 1] == player && gameBoard[2, 0] == player)
+    {
+        return true;
+    }
+
+    // No winning condition has been met
+    return false;
+}
