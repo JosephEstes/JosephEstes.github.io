@@ -48,178 +48,183 @@ namespace PacMan
             Console.WriteLine("Game Over!");
         }
 
-static void UpdateGameState(string[,] gameBoard, ref int pacmanX, ref int pacmanY, ref int ghost1X, ref int ghost1Y, ref int ghost2X, ref int ghost2Y, ref int score)
-{
-    // Move Pac-Man
-    Console.WriteLine("Enter a direction for Pac-Man (W = Up, S = Down, A = Left, D = Right):");
-    ConsoleKey key = Console.ReadKey().Key;
-    switch (key)
-    {
-        case ConsoleKey.W:
-            if (gameBoard[pacmanY - 1, pacmanX] != "#")
-            {
-                pacmanY--;
-            }
-            break;
-        case ConsoleKey.S:
-            if (gameBoard[pacmanY + 1, pacmanX] != "#")
-            {
-                pacmanY++;
-            }
-            break;
-        // Add cases for moving left and right here
-        case ConsoleKey.A:
-            if (gameBoard[pacmanY, pacmanX - 1] != "#")
-            {
-                pacmanX--;
-            }
-            break;
-        case ConsoleKey.D:
-            if (gameBoard[pacmanY, pacmanX + 1] != "#")
-            {
-                pacmanX++;
-            }
-            break;
-
-        // Handle any other input
-        default:
-            // Do nothing
-            break;
-    }
-
-// Move ghost 1
-int dx = 0;
-int dy = 0;
-// Choose a random direction for the ghost to move in
-Random rand = new Random();
-int dir = rand.Next(0, 4);
-switch (dir)
-{
-    case 0:
-        // Move up
-        dy = -1;
-        break;
-    case 1:
-        // Move down
-        dy = 1;
-        break;
-    case 2:
-        // Move left
-        dx = -1;
-        break;
-    case 3:
-        // Move right
-        dx = 1;
-        break;
-}
-// Check if the space in the chosen direction is not a wall
-if (gameBoard[ghost1Y + dy, ghost1X + dx] != "#")
-{
-    // Update the ghost's position
-    ghost1X += dx;
-    ghost1Y += dy;
-}
-
-// Move ghost 2
-// Choose a random direction for the ghost to move in
-dir = rand.Next(0, 4);
-switch (dir)
-{
-    case 0:
-        // Move up
-        dy = -1;
-        break;
-    case 1:
-        // Move down
-        dy = 1;
-        break;
-    case 2:
-        // Move left
-        dx = -1;
-        break;
-    case 3:
-        // Move right
-        dx = 1;
-        break;
-}
-// Check if the space in the chosen direction is not a wall
-if (gameBoard[ghost2Y + dy, ghost2X + dx] != "#")
-{
-    // Update the ghost's position
-    ghost2X += dx;
-    ghost2Y += dy;
-}
-
-}
-
-static void PrintGameBoard(string[,] gameBoard, int pacmanX, int pacmanY, int ghost1X, int ghost1Y, int ghost2X, int ghost2Y, int score)
-{
-    // Print the game board
-    for (int y = 0; y < gameBoard.GetLength(0); y++)
-    {
-        for (int x = 0; x < gameBoard.GetLength(1); x++)
+        static void UpdateGameState(string[,] gameBoard, ref int pacmanX, ref int pacmanY, ref int ghost1X, ref int ghost1Y, ref int ghost2X, ref int ghost2Y, ref int score)
         {
-            if (x == pacmanX && y == pacmanY)
+            // Move Pac-Man
+            Console.WriteLine("Enter a direction for Pac-Man (W = Up, S = Down, A = Left, D = Right):");
+            ConsoleKey key = Console.ReadKey().Key;
+            switch (key)
             {
-                // Print Pac-Man
-                Console.Write("P");
-            }
-            else if (x == ghost1X && y == ghost1Y)
-            {
-                // Print ghost 1
-                Console.Write("G");
-            }
-            else if (x == ghost2X && y == ghost2Y)
-            {
-                // Print ghost 2
-                Console.Write("G");
-            }
-            else
-            {
-                // Print the game board tile
-                Console.Write(gameBoard[y, x]);
-            }
-        }
-        Console.WriteLine();
-    }
-    Console.WriteLine("Score: " + score);
-}
+                case ConsoleKey.W:
+                    if (gameBoard[pacmanY - 1, pacmanX] != "#")
+                    {
+                        pacmanY--;
+                    }
+                    break;
+                case ConsoleKey.S:
+                    if (gameBoard[pacmanY + 1, pacmanX] != "#")
+                    {
+                        pacmanY++;
+                    }
+                    break;
+                // Add cases for moving left and right here
+                case ConsoleKey.A:
+                    if (gameBoard[pacmanY, pacmanX - 1] != "#")
+                    {
+                        pacmanX--;
+                    }
+                    break;
+                case ConsoleKey.D:
+                    if (gameBoard[pacmanY, pacmanX + 1] != "#")
+                    {
+                        pacmanX++;
+                    }
+                    break;
 
-static bool IsGameOver(string[,] gameBoard, int pacmanX, int pacmanY, int ghost1X, int ghost1Y, int ghost2X, int ghost2Y)
-{
-    // Check if Pac-Man has collided with a ghost
-    if ((pacmanX == ghost1X && pacmanY == ghost1Y) || (pacmanX == ghost2X && pacmanY == ghost2Y))
-    {
-        return true;
-    }
-
-    // Check if Pac-Man has won
-    if (gameBoard[pacmanY, pacmanX] == " ")
-    {
-        // Update the game board to show that Pac-Man has eaten a dot
-        gameBoard[pacmanY, pacmanX] = ".";
-
-        // Increment the score
-        score++;
-
-        // Check if there are any dots left
-        bool dotsLeft = false;
-        foreach (string tile in gameBoard)
-        {
-            if (tile == " ")
-            {
-                dotsLeft = true;
-                break;
+                // Handle any other input
+                default:
+                    // Do nothing
+                    break;
             }
+
+            // Move ghost 1
+            int dx = 0;
+            int dy = 0;
+            // Choose a random direction for the ghost to move in
+            Random rand = new Random();
+            int dir = rand.Next(0, 4);
+            switch (dir)
+            {
+                case 0:
+                    // Move up
+                    dy = -1;
+                    break;
+                case 1:
+                    // Move down
+                    dy = 1;
+                    break;
+                case 2:
+                    // Move left
+                    dx = -1;
+                    break;
+                case 3:
+                    // Move right
+                    dx = 1;
+                    break;
+            }
+            // Check if the space in the chosen direction is not a wall
+            if (gameBoard[ghost1Y + dy, ghost1X + dx] != "#")
+            {
+                // Update the ghost's position
+                ghost1X += dx;
+                ghost1Y += dy;
+            }
+
+            // Move ghost 2
+            // Choose a random direction for the ghost to move in
+            dir = rand.Next(0, 4);
+            switch (dir)
+            {
+                case 0:
+                    // Move up
+                    dy = -1;
+                    break;
+                case 1:
+                    // Move down
+                    dy = 1;
+                    break;
+                case 2:
+                    // Move left
+                    dx = -1;
+                    break;
+                case 3:
+                    // Move right
+                    dx = 1;
+                    break;
+            }
+            // Check if the space in the chosen direction is not a wall
+            if (gameBoard[ghost2Y + dy, ghost2X + dx] != "#")
+            {
+                // Update the ghost's position
+                ghost2X += dx;
+                ghost2Y += dy;
+            }
+
         }
 
-        if (!dotsLeft)
+        static void PrintGameBoard(string[,] gameBoard, int pacmanX, int pacmanY, int ghost1X, int ghost1Y, int ghost2X, int ghost2Y, int score)
         {
-            // There are no dots left, so the game is over
-            return true;
+            // Print the game board
+            for (int y = 0; y < gameBoard.GetLength(0); y++)
+            {
+                for (int x = 0; x < gameBoard.GetLength(1); x++)
+                {
+                    if (x == pacmanX && y == pacmanY)
+                    {
+                        // Print Pac-Man
+                        Console.Write("P");
+                    }
+                    else if (x == ghost1X && y == ghost1Y)
+                    {
+                        // Print ghost 1
+                        Console.Write("G");
+                    }
+                    else if (x == ghost2X && y == ghost2Y)
+                    {
+                        // Print ghost 2
+                        Console.Write("G");
+                    }
+                    else
+                    {
+                        // Print the game board tile
+                        Console.Write(gameBoard[y, x]);
+                    }
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine("Score: " + score);
+        }
+
+        static bool IsGameOver(string[,] gameBoard, int pacmanX, int pacmanY, int ghost1X, int ghost1Y, int ghost2X, int ghost2Y)
+        {
+            // Initialize the score variable
+            int score = 0;
+
+            // Check if Pac-Man has collided with a ghost
+            if ((pacmanX == ghost1X && pacmanY == ghost1Y) || (pacmanX == ghost2X && pacmanY == ghost2Y))
+            {
+                return true;
+            }
+
+            // Check if Pac-Man has won
+            if (gameBoard[pacmanY, pacmanX] == " ")
+            {
+                // Update the game board to show that Pac-Man has eaten a dot
+                gameBoard[pacmanY, pacmanX] = ".";
+
+                // Increment the score
+                score++;
+
+                // Check if there are any dots left
+                bool dotsLeft = false;
+                foreach (string tile in gameBoard)
+                {
+                    if (tile == " ")
+                    {
+                        dotsLeft = true;
+                        break;
+                    }
+                }
+
+                if (!dotsLeft)
+                {
+                    // There are no dots left, so the game is over
+                    return true;
+                }
+            }
+
+            // The game is not over
+            return false;
         }
     }
-
-    // The game is not over
-    return false;
 }
