@@ -49,20 +49,35 @@ namespace PacMan
         }
 
         static void UpdateGameState(string[,] gameBoard, ref int pacmanX, ref int pacmanY, ref int ghost1X, ref int ghost1Y, ref int ghost2X, ref int ghost2Y, ref int score)
-        {
-            // Move Pac-Man
-            Console.WriteLine("Enter a direction for Pac-Man (W = Up, S = Down, A = Left, D = Right):");
-            ConsoleKey key = Console.ReadKey().Key;
-            switch (key)
+{
+    // Move Pac-Man
+    Console.WriteLine("Enter a direction for Pac-Man (W = Up, S = Down, A = Left, D = Right):");
+    ConsoleKey key = Console.ReadKey().Key;
+    switch (key)
+    {
+        case ConsoleKey.W:
+            if (gameBoard[pacmanY - 1, pacmanX] != "#")
             {
-                case ConsoleKey.W:
-                    if (gameBoard[pacmanY - 1, pacmanX] != "#")
-                    {
-                        pacmanY--;
-                    }
-                    break;
-                case ConsoleKey.S:
-                    if (gameBoard[pacmanY + 1, pacmanX] != "#")
-                    {
-                        pacmanY++;
-                   
+                pacmanY--;
+            }
+            break;
+        case ConsoleKey.S:
+            if (gameBoard[pacmanY + 1, pacmanX] != "#")
+            {
+                pacmanY++;
+            }
+            break;
+        // Add cases for moving left and right here
+
+        // Handle any other input
+        default:
+            // Do nothing
+            break;
+    }
+
+    // Move ghost 1
+    // Add code here
+
+    // Move ghost 2
+    // Add code here
+}
