@@ -23,48 +23,46 @@ namespace PacMan
 
             // Initialize the game state
             bool gameOver = false;
+            int pacmanX = 1;
+            int pacmanY = 1;
+            int ghost1X = 8;
+            int ghost1Y = 8;
+            int ghost2X = 5;
+            int ghost2Y = 5;
+            int score = 0;
 
             // Game loop
             while (!gameOver)
             {
                 // Update the game state
-                UpdateGameState(gameBoard);
+                UpdateGameState(gameBoard, ref pacmanX, ref pacmanY, ref ghost1X, ref ghost1Y, ref ghost2X, ref ghost2Y, ref score);
 
                 // Check if the game is over
-                gameOver = IsGameOver(gameBoard);
+                gameOver = IsGameOver(gameBoard, pacmanX, pacmanY, ghost1X, ghost1Y, ghost2X, ghost2Y);
 
                 // Print the game board
-                PrintGameBoard(gameBoard);
+                PrintGameBoard(gameBoard, pacmanX, pacmanY, ghost1X, ghost1Y, ghost2X, ghost2Y, score);
             }
 
             // Print a message when the game is over
             Console.WriteLine("Game Over!");
         }
 
-        static void UpdateGameState(string[,] gameBoard)
+        static void UpdateGameState(string[,] gameBoard, ref int pacmanX, ref int pacmanY, ref int ghost1X, ref int ghost1Y, ref int ghost2X, ref int ghost2Y, ref int score)
         {
-            // Placeholder implementation
-            Console.WriteLine("Updating game state...");
-        }
-
-        static bool IsGameOver(string[,] gameBoard)
-        {
-            // Placeholder implementation
-            Console.WriteLine("Checking if game is over...");
-            return false;
-        }
-
-        static void PrintGameBoard(string[,] gameBoard)
-        {
-            Console.WriteLine("Current game board:");
-            for (int i = 0; i < gameBoard.GetLength(0); i++)
+            // Move Pac-Man
+            Console.WriteLine("Enter a direction for Pac-Man (W = Up, S = Down, A = Left, D = Right):");
+            ConsoleKey key = Console.ReadKey().Key;
+            switch (key)
             {
-                for (int j = 0; j < gameBoard.GetLength(1); j++)
-                {
-                    Console.Write(gameBoard[i, j]);
-                }
-                Console.WriteLine();
-            }
-        }
-    }
-}
+                case ConsoleKey.W:
+                    if (gameBoard[pacmanY - 1, pacmanX] != "#")
+                    {
+                        pacmanY--;
+                    }
+                    break;
+                case ConsoleKey.S:
+                    if (gameBoard[pacmanY + 1, pacmanX] != "#")
+                    {
+                        pacmanY++;
+                   
