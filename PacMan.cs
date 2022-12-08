@@ -152,40 +152,6 @@ if (gameBoard[ghost2Y + dy, ghost2X + dx] != "#")
 
 }
 
-        
-static bool IsGameOver(string[,] gameBoard, int pacmanX, int pacmanY, int ghost1X, int ghost1Y, int ghost2X, int ghost2Y)
-{
-    // Check if Pac-Man has collided with a ghost
-    if ((pacmanX == ghost1X && pacmanY == ghost1Y) ||
-        (pacmanX == ghost2X && pacmanY == ghost2Y))
-    {
-        return true;
-    }
-
-    // Count the number of dots on the game board
-int numDots = 0;
-for (int y = 0; y < gameBoard.GetLength(0); y++)
-{
-    for (int x = 0; x < gameBoard.GetLength(1); x++)
-    {
-        if (gameBoard[y, x] == ".")
-        {
-            numDots++;
-        }
-    }
-}
-
-// Check if the score is equal to the number of dots
-if (score == numDots)
-{
-    return true;
-}
-
-
-    // Otherwise, the game is not over
-    return false;
-}
-
 static void PrintGameBoard(string[,] gameBoard, int pacmanX, int pacmanY, int ghost1X, int ghost1Y, int ghost2X, int ghost2Y, int score)
 {
     // Print the game board
@@ -193,7 +159,6 @@ static void PrintGameBoard(string[,] gameBoard, int pacmanX, int pacmanY, int gh
     {
         for (int x = 0; x < gameBoard.GetLength(1); x++)
         {
-            // Check if this is the position of Pac-Man
             if (x == pacmanX && y == pacmanY)
             {
                 // Print Pac-Man
@@ -211,12 +176,50 @@ static void PrintGameBoard(string[,] gameBoard, int pacmanX, int pacmanY, int gh
             }
             else
             {
-                // Print the game board element
+                // Print the game board tile
                 Console.Write(gameBoard[y, x]);
             }
         }
         Console.WriteLine();
     }
-    // Print the score
     Console.WriteLine("Score: " + score);
+}
+
+static bool IsGameOver(string[,] gameBoard, int pacmanX, int pacmanY, int ghost1X, int ghost1Y, int ghost2X, int ghost2Y)
+{
+    // Check if Pac-Man has collided with a ghost
+    if ((pacmanX == ghost1X && pacmanY == ghost1Y) || (pacmanX == ghost2X && pacmanY == ghost2Y))
+    {
+        return true;
+    }
+
+    // Check if Pac-Man has won
+    if (gameBoard[pacmanY, pacmanX] == " ")
+    {
+        // Update the game board to show that Pac-Man has eaten a dot
+        gameBoard[pacmanY, pacmanX] = ".";
+
+        // Increment the score
+        score++;
+
+        // Check if there are any dots left
+        bool dotsLeft = false;
+        foreach (string tile in gameBoard)
+        {
+            if (tile == " ")
+            {
+                dotsLeft = true;
+                break;
+            }
+        }
+
+        if (!dotsLeft)
+        {
+            // There are no dots left, so the game is over
+            return true;
+        }
+    }
+
+    // The game is not over
+    return false;
 }
