@@ -87,11 +87,69 @@ static void UpdateGameState(string[,] gameBoard, ref int pacmanX, ref int pacman
             break;
     }
 
-    // Move ghost 1
-    // Add code here
+// Move ghost 1
+int dx = 0;
+int dy = 0;
+// Choose a random direction for the ghost to move in
+Random rand = new Random();
+int dir = rand.Next(0, 4);
+switch (dir)
+{
+    case 0:
+        // Move up
+        dy = -1;
+        break;
+    case 1:
+        // Move down
+        dy = 1;
+        break;
+    case 2:
+        // Move left
+        dx = -1;
+        break;
+    case 3:
+        // Move right
+        dx = 1;
+        break;
+}
+// Check if the space in the chosen direction is not a wall
+if (gameBoard[ghost1Y + dy, ghost1X + dx] != "#")
+{
+    // Update the ghost's position
+    ghost1X += dx;
+    ghost1Y += dy;
+}
 
-    // Move ghost 2
-    // Add code here
+// Move ghost 2
+// Choose a random direction for the ghost to move in
+dir = rand.Next(0, 4);
+switch (dir)
+{
+    case 0:
+        // Move up
+        dy = -1;
+        break;
+    case 1:
+        // Move down
+        dy = 1;
+        break;
+    case 2:
+        // Move left
+        dx = -1;
+        break;
+    case 3:
+        // Move right
+        dx = 1;
+        break;
+}
+// Check if the space in the chosen direction is not a wall
+if (gameBoard[ghost2Y + dy, ghost2X + dx] != "#")
+{
+    // Update the ghost's position
+    ghost2X += dx;
+    ghost2Y += dy;
+}
+
 }
 
         
@@ -104,7 +162,25 @@ static bool IsGameOver(string[,] gameBoard, int pacmanX, int pacmanY, int ghost1
         return true;
     }
 
-    // Add any other game over conditions here
+    // Count the number of dots on the game board
+int numDots = 0;
+for (int y = 0; y < gameBoard.GetLength(0); y++)
+{
+    for (int x = 0; x < gameBoard.GetLength(1); x++)
+    {
+        if (gameBoard[y, x] == ".")
+        {
+            numDots++;
+        }
+    }
+}
+
+// Check if the score is equal to the number of dots
+if (score == numDots)
+{
+    return true;
+}
+
 
     // Otherwise, the game is not over
     return false;
