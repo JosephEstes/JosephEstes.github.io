@@ -68,6 +68,18 @@ static void UpdateGameState(string[,] gameBoard, ref int pacmanX, ref int pacman
             }
             break;
         // Add cases for moving left and right here
+        case ConsoleKey.A:
+            if (gameBoard[pacmanY, pacmanX - 1] != "#")
+            {
+                pacmanX--;
+            }
+            break;
+        case ConsoleKey.D:
+            if (gameBoard[pacmanY, pacmanX + 1] != "#")
+            {
+                pacmanX++;
+            }
+            break;
 
         // Handle any other input
         default:
@@ -82,6 +94,7 @@ static void UpdateGameState(string[,] gameBoard, ref int pacmanX, ref int pacman
     // Add code here
 }
 
+        
 static bool IsGameOver(string[,] gameBoard, int pacmanX, int pacmanY, int ghost1X, int ghost1Y, int ghost2X, int ghost2Y)
 {
     // Check if Pac-Man has collided with a ghost
