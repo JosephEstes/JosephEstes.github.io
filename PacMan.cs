@@ -48,7 +48,7 @@ namespace PacMan
             Console.WriteLine("Game Over!");
         }
 
-        static void UpdateGameState(string[,] gameBoard, ref int pacmanX, ref int pacmanY, ref int ghost1X, ref int ghost1Y, ref int ghost2X, ref int ghost2Y, ref int score)
+static void UpdateGameState(string[,] gameBoard, ref int pacmanX, ref int pacmanY, ref int ghost1X, ref int ghost1Y, ref int ghost2X, ref int ghost2Y, ref int score)
 {
     // Move Pac-Man
     Console.WriteLine("Enter a direction for Pac-Man (W = Up, S = Down, A = Left, D = Right):");
@@ -80,4 +80,19 @@ namespace PacMan
 
     // Move ghost 2
     // Add code here
+}
+
+static bool IsGameOver(string[,] gameBoard, int pacmanX, int pacmanY, int ghost1X, int ghost1Y, int ghost2X, int ghost2Y)
+{
+    // Check if Pac-Man has collided with a ghost
+    if ((pacmanX == ghost1X && pacmanY == ghost1Y) ||
+        (pacmanX == ghost2X && pacmanY == ghost2Y))
+    {
+        return true;
+    }
+
+    // Add any other game over conditions here
+
+    // Otherwise, the game is not over
+    return false;
 }
