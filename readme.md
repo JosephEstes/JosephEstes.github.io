@@ -1,6 +1,6 @@
-# Cybersecurity Portfolio Website
+# Portfolio Website
 
-This is a portfolio website for showcasing cybersecurity projects and skills. The website features the following:
+This is a portfolio website for showcasing my projects and skills. The website features the following:
 
 - A responsive design that adjusts to the size of the screen, allowing it to be easily viewed on mobile devices
 - A navigation menu with links to different sections of the website
