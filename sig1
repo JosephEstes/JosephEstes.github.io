@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+  .email-signature {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+  }
+  .name {
+    font-weight: bold;
+  }
+  .job-title {
+    color: #666;
+  }
+  .contact-info {
+    margin-top: 5px;
+  }
+  .email, .phone {
+    text-decoration: none;
+    color: #333;
+  }
+  .address {
+    color: #777;
+  }
+  .badge {
+    max-width: 100px;
+    height: auto;
+    margin-top: 10px;
+  }
+  .icon-link {
+    color: #007BFF;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+</style>
+</head>
+<body>
+  <div class="email-signature">
+    <span class="name">Your Name</span><br>
+    <span class="job-title">Your Job Title</span><br>
+    <div class="contact-info">
+      <a class="email" href="mailto:youremail@example.com">youremail@example.com</a><br>
+      <a class="phone" href="tel:+1234567890">123-456-7890</a><br>
+      <span class="address">123 Main Street, City, State ZIP</span>
+      <img class="badge" src="comptia_security_plus_badge.png" alt="CompTIA Security+ Badge">
+      <br>
+      <a class="icon-link" href="https://www.linkedin.com/in/yourlinkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      <a class="icon-link" href="https://www.yourwebsite.com/portfolio"><i class="fas fa-globe"></i> Portfolio</a>
+    </div>
+    <div style="margin-top: 10px;">
+      <a class="icon-link" href="https://www.reviewlink.com"><i class="fas fa-star"></i> Provide a Review</a>
+    </div>
+  </div>
+</body>
+</html>
