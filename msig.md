@@ -8,7 +8,7 @@
 
 [**LinkedIn**](https://www.linkedin.com/in/joseph-estes/) | [**`Provide a Review`**](URL_TO_REVIEW_PAGE) | [**Portfolio**](https://josephestes.github.io)  
 
-![CompTIA Security+ Certified](https://josephestes.github.io/securityplus-logo.png)
+[![CompTIA Security+ Certified](https://josephestes.github.io/securityplus-logo.png)](https://www.youracclaim.com/badges/0c63e161-e4c4-4d24-971f-789b1aa99f90)
 
 
 ## John Doe  
@@ -18,3 +18,5 @@ Phone: [Phone Number] | Email: [Email Address]
 Website: [Company Website URL]  
 
 [![LinkedIn](LinkedIn-Icon-URL)](LinkedIn-Profile-URL) [![Twitter](Twitter-Icon-URL)](Twitter-Profile-URL)
+
+![CompTIA Security+ Certified](https://josephestes.github.io/securityplus-logo.png)
